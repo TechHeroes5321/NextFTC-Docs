@@ -1,6 +1,6 @@
 # Welcome to NextFTC
 
-NextFTC is a simple but powerful library for FTC. It is a library for everyone, rookies and seasoned experts alike. Created by FTC Team #3805 Atomic Robotics, it introduces command features similar to that of WPI, the library used by nearly all FRC teams. With NextFTC, you can create cleaner, modular, and more efficient code.
+NextFTC is a simple but powerful library for FTC. It is a library for everyone, rookies and seasoned experts alike. It introduces command features similar to that of WPILib, the library used by nearly all FRC teams. With NextFTC, you can create cleaner, modular, and more efficient code.
 
 ## Features
 
