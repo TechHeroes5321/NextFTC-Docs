@@ -11,6 +11,6 @@ NextFTC is a simple but powerful library for FTC. It is a library for everyone, 
 -   **Premade Commands:** You almost never need to write your own commands, as there are dozens of commands already made for you. Examples are running a motor to a position using a custom PID controller, following a path, or driving during TeleOp.
 -   **Pedro Pathing:** NextFTC has built in integration with [Pedro Pathing](https://pedropathing.com), an autonomous pathing library. Unlike Roadrunner, Pedro Pathing is faster, smoother, and easier to tune.
 
-# Installation
+## A note on these docs
 
-_TODO_
+NextFTC was written in Kotlin, a JVM programming language. You can use either Kotlin or Java, but there are some small things in Kotlin that make your life slightly easier. Each section that gives code examples will have tabs for both Kotlin and Java. It is recommended to choose just one language for your project, to avoid having to figure out how to make your code compatible with itself.  

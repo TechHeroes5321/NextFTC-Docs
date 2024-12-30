@@ -5,6 +5,7 @@ multilingual = false
 src = "src"
 
 [preprocessor.tabs]
+[preprocessor.alerts]
 
 [output.html]
 additional-css = ["theme/tabs.css"]

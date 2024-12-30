@@ -23,6 +23,7 @@ jobs:
                   curl -sSL $url | tar -xz --directory=./mdbook
                   echo `pwd`/mdbook >> $GITHUB_PATH
                   cargo install mdbook-tabs
+                  cargo install mdbook-alerts
             - name: Build Book
               run: |
                   # This assumes your book is in the root of your repository.
