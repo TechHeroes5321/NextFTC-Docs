@@ -1,4 +1,4 @@
-# Lift
+# Lift Subsystem
 
 A subsystem that is found on almost all FTC robots in most seasons is a linear slide, also known as a lift. Here, you will learn how to program your own lift Subsystem.
 
@@ -65,23 +65,28 @@ Let's create our first `RunToPosition` command:
 
 ```kt
 val toLow: Command
-    get() = RunToPosition(motor, // MOTOR TO MOVE
-        0.0, // TARGET POSITION, IN TICKS
-        controller) // CONTROLLER TO IMPLEMENT
+        get() = RunToPosition(motor, // MOTOR TO MOVE
+            0.0, // TARGET POSITION, IN TICKS
+            controller, // CONTROLLER TO IMPLEMENT
+            this) // IMPLEMENTED SUBSYSTEM
 ```
+
+Note the last parameter: `subsystem`. This is what tells NextFTC which commands should be allowed to run at the same time. If it weren't set, `toLow` would be able to run at the same time as other commands that use the `Lift` subsystem -- so there would be multiple things fighting to set the motor's power. Generally, you just need to pass `this` as the subsystem -- there are exceptions with more complicated custom commands.
 
 Pretty easy, right? Let's duplicate it and update our variable name and target position to create our other two commands:
 
 ```kt
 val toMiddle: Command
-    get() = RunToPosition(motor, // MOTOR TO MOVE
-        500.0, // TARGET POSITION, IN TICKS
-        controller) // CONTROLLER TO IMPLEMENT
+        get() = RunToPosition(motor, // MOTOR TO MOVE
+            500.0, // TARGET POSITION, IN TICKS
+            controller, // CONTROLLER TO IMPLEMENT
+            this) // IMPLEMENTED SUBSYSTEM
 
-val toHigh: Command
-    get() = RunToPosition(motor, // MOTOR TO MOVE
-        1200.0, // TARGET POSITION, IN TICKS
-        controller) // CONTROLLER TO IMPLEMENT
+    val toHigh: Command
+        get() = RunToPosition(motor, // MOTOR TO MOVE
+            1200.0, // TARGET POSITION, IN TICKS
+            controller, // CONTROLLER TO IMPLEMENT
+            this) // IMPLEMENTED SUBSYSTEM
 ```
 
 ## Final result
@@ -99,17 +104,20 @@ object Lift: Subsystem() {
     val toLow: Command
         get() = RunToPosition(motor, // MOTOR TO MOVE
             0.0, // TARGET POSITION, IN TICKS
-            controller) // CONTROLLER TO IMPLEMENT
+            controller, // CONTROLLER TO IMPLEMENT
+            this) // IMPLEMENTED SUBSYSTEM
 
     val toMiddle: Command
         get() = RunToPosition(motor, // MOTOR TO MOVE
             500.0, // TARGET POSITION, IN TICKS
-            controller) // CONTROLLER TO IMPLEMENT
+            controller, // CONTROLLER TO IMPLEMENT
+            this) // IMPLEMENTED SUBSYSTEM
 
     val toHigh: Command
         get() = RunToPosition(motor, // MOTOR TO MOVE
             1200.0, // TARGET POSITION, IN TICKS
-            controller) // CONTROLLER TO IMPLEMENT
+            controller, // CONTROLLER TO IMPLEMENT
+            this) // IMPLEMENTED SUBSYSTEM
 
     override fun initialize() {
         motor = MotorEx(name)
@@ -120,19 +128,13 @@ object Lift: Subsystem() {
 {{#tab name="Java" }}
 ## Step 1: Create your class
 
-The first step to creating your Subsystem is setting up the structure for it. Subsystems should be singleton classes, which means there will be a small amount of boilerplate at the top of each of your Subsystem files. This is one of the situations where Kotlin is slightly nicer to use with NextFTC. Here is the boilerplate that will be common amongst all subsystems; just change the name:
+The first step to creating your Subsystem is setting up the structure for it. There should only be one instance of each Subsystem class. To do this, there is a couple lines of boilerplate you will need to add to the top of every subsystem class you create. Here is the subsystem class template:
 
 ```java
 public class MySubsystem extends Subsystem {
-    // SINGLETON CLASS BOILERPLATE
-    private static MySubsystem instance; // Store an instance of this class statically
-    private MySubsystem() { } // Make the constructor private so additional instances cannot be created
-    public static MySubsystem getInstance() { // Static function to get the instance of this class.
-        if (instance == null) { // If an instance hasn't been created yet, create one
-            instance = new MySubsystem();
-        }
-        return instance; // Return the instance
-    }
+    // BOILERPLATE
+    public static final MySubsystem INSTANCE = new MySubsystem();
+    private MySubsystem() { }
 
     // USER CODE HERE
 }
@@ -192,9 +194,12 @@ Let's create our first `RunToPosition` command:
 public Command toLow() {
     return new RunToPosition(motor, // MOTOR TO MOVE
             0.0, // TARGET POSITION, IN TICKS
-            controller); // CONTROLLER TO IMPLEMENT
+            controller, // CONTROLLER TO IMPLEMENT
+            this); // IMPLEMENTED SUBSYSTEM
 }
 ```
+
+Note the last parameter: `subsystem`. This is what tells NextFTC which commands should be allowed to run at the same time. If it weren't set, `toLow` would be able to run at the same time as other commands that use the `Lift` subsystem -- so there would be multiple things fighting to set the motor's power. Generally, you just need to pass `this` as the subsystem -- there are exceptions with more complicated custom commands.
 
 Pretty easy, right? Let's duplicate it and update our function name and target position to create our other two commands:
 
@@ -202,13 +207,15 @@ Pretty easy, right? Let's duplicate it and update our function name and target p
 public Command toMiddle() {
     return new RunToPosition(motor, // MOTOR TO MOVE
             500.0, // TARGET POSITION, IN TICKS
-            controller); // CONTROLLER TO IMPLEMENT
+            controller, // CONTROLLER TO IMPLEMENT
+            this); // IMPLEMENTED SUBSYSTEM
 }
 
 public Command toHigh() {
     return new RunToPosition(motor, // MOTOR TO MOVE
             1200.0, // TARGET POSITION, IN TICKS
-            controller); // CONTROLLER TO IMPLEMENT
+            controller, // CONTROLLER TO IMPLEMENT
+            this); // IMPLEMENTED SUBSYSTEM
 }
 ```
 
@@ -218,15 +225,9 @@ That's it! You've created your first Subsystem! Here is the final result:
 
 ```java
 public class Lift extends Subsystem {
-    // SINGLETON CLASS BOILERPLATE
-    private static Lift instance; // Store an instance of this class statically
-    private Lift() { } // Make the constructor private so additional instances cannot be created
-    public static Lift getInstance() { // Static function to get the instance of this class.
-        if (instance == null) { // If an instance hasn't been created yet, create one
-            instance = new Lift();
-        }
-        return instance; // Return the instance
-    }
+    // BOILERPLATE
+    public static final Lift INSTANCE = new Lift();
+    private Lift() { }
 
     // USER CODE
     public MotorEx motor;
@@ -238,19 +239,22 @@ public class Lift extends Subsystem {
     public Command toLow() {
         return new RunToPosition(motor, // MOTOR TO MOVE
                 0.0, // TARGET POSITION, IN TICKS
-                controller); // CONTROLLER TO IMPLEMENT
+                controller, // CONTROLLER TO IMPLEMENT
+                this); // IMPLEMENTED SUBSYSTEM
     }
 
     public Command toMiddle() {
         return new RunToPosition(motor, // MOTOR TO MOVE
                 500.0, // TARGET POSITION, IN TICKS
-                controller); // CONTROLLER TO IMPLEMENT
+                controller, // CONTROLLER TO IMPLEMENT
+                this); // IMPLEMENTED SUBSYSTEM
     }
 
     public Command toHigh() {
         return new RunToPosition(motor, // MOTOR TO MOVE
                 1200.0, // TARGET POSITION, IN TICKS
-                controller); // CONTROLLER TO IMPLEMENT
+                controller, // CONTROLLER TO IMPLEMENT
+                this); // IMPLEMENTED SUBSYSTEM
     }
     
     @Override

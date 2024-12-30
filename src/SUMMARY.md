@@ -5,7 +5,8 @@
 # User Guide
 - [Installation](./userguide/installation.md)
 - [Subsystems](./userguide/subsystems.md)
-    - [Lift](./userguide/subsystem-lift.md)
+    - [Lift Subsystem](./userguide/subsystems/subsystem-lift.md)
+    - [Claw Subsystem](./userguide/subsystems/subsystem-claw.md)
 
 ---
 # Reference Guide

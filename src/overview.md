@@ -13,4 +13,6 @@ NextFTC is a simple but powerful library for FTC. It is a library for everyone, 
 
 ## A note on these docs
 
-NextFTC was written in Kotlin, a JVM programming language. You can use either Kotlin or Java, but there are some small things in Kotlin that make your life slightly easier. Each section that gives code examples will have tabs for both Kotlin and Java. It is recommended to choose just one language for your project, to avoid having to figure out how to make your code compatible with itself.  
+NextFTC was written in Kotlin, a JVM programming language. You can use either Kotlin or Java, but there are some small things in Kotlin that make your life slightly easier. Each section that gives code examples will have tabs for both Kotlin and Java. It is recommended to choose just one language for your project, to avoid having to figure out how to make your code compatible with itself.
+
+If you will be using Kotlin, you must configure Kotlin in your project. I recommend using the Kotlin Gradle Plugin version `1.9.25`. (Kotlin comes preinstalled in the Quickstart)
