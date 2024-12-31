@@ -39,7 +39,7 @@ Still in the `build.dependencies.gradle` file, go to the `dependencies` block. A
 {{#tab name="Groovy (.gradle)" }}
 ```groovy
 implementation 'com.rowanmcalpin.nextftc:core:0.5.3-beta1'
-implementation 'com.rowanmcalpin.nextftc:ftc:0.5.3-beta1'
+implementation 'com.rowanmcalpin.nextftc:ftc:0.5.3-beta2'
 implementation 'com.rowanmcalpin.nextftc:pedro:0.5.3-beta1' // Remove if you don't intend to use PedroPathing
 implementation 'com.pedropathing:pedro:1.0.1' // Remove if you don't intend to use PedroPathing
 implementation 'com.acmerobotics.dashboard:dashboard:0.4.16' // Remove if you don't intend to use the FTC Dashboard (required if using PedroPathing)
@@ -48,7 +48,7 @@ implementation 'com.acmerobotics.dashboard:dashboard:0.4.16' // Remove if you do
 {{#tab name="Kotlin Script (.gradle.kts)" }}
 ```kt
 implementation("com.rowanmcalpin.nextftc:core:0.5.3-beta1")
-implementation("com.rowanmcalpin.nextftc:ftc:0.5.3-beta1")
+implementation("com.rowanmcalpin.nextftc:ftc:0.5.3-beta2")
 implementation("com.rowanmcalpin.nextftc:pedro:0.5.3-beta1") // Remove if you don't intend to use PedroPathing
 implementation("com.pedropathing:pedro:1.0.1") // Remove if you don't intend to use PedroPathing
 implementation("com.acmerobotics.dashboard:dashboard:0.4.16") // Remove if you don't intend to use the FTC Dashboard (required if using PedroPathing)
