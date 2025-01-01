@@ -88,7 +88,7 @@ val firstRoutine: Command
     )
 ```
 
-Just like with SequentialGroups, you shouldn't create empty ParallelGroups (although it won't cause an error like ParallelGroups do). Let's populate it with our `Lift.toMiddle` and `Claw.close` commands:
+Just like with SequentialGroups, you shouldn't create empty ParallelGroups (although it won't cause an error like SequentialGroups do). Let's populate it with our `Lift.toMiddle` and `Claw.close` commands:
 
 ```kt
 val firstRoutine: Command
